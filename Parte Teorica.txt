@@ -23,25 +23,36 @@ print(cuenta.obtener_saldo()) # 1500
 class vehiculo:             #HERENCIA
     def __init__(self, marca):  
         self.marca = marca 
-
+    def mostrar_info(self):
+        return f"Marca: {self.marca}"
+        
 class automovil(vehiculo):         #HERENCIA
     def __init__(self, marca, modelo):  
         super().__init__(marca)  
         self.modelo = modelo  
         class vehiculo:  
-    def __init__(self, marca):  
-        self.marca = marca  
+            def __init__(self, marca):  
+                  self.marca = marca  
+    def mostrar_info(self):
+        return f"{super().mostrar_info()}, Modelo: {self.modelo}"
+
+#Uso
+auto1 = automovil("Toyota", "Corolla")
+auto2 = automovil("Ford", "Mustang")
+
+print(auto1.mostrar_info())  # Salida: Marca: Toyota, Modelo: Corolla
+print(auto2.mostrar_info())  # Salida: Marca: Ford, Modelo: Mustang
 ###
 
 class animal:       #POLIMORFISMO
     def hacer_sonido(self):
         pass  # Método abstracto
 
-class perro(Animal):
+class perro(animal):
     def hacer_sonido(self):
         return "Guau!"
 
-class gato(Animal):
+class gato(animal):
     def hacer_sonido(self):
         return "Miau!"
 
@@ -53,7 +64,7 @@ for animal in animales:
 
 from abc import ABC, abstractmethod     #ABSTRACCIÓN 
 
-class figura(ABC):  # Clase abstracta    @abstractmethod
+class figura(ABC):  # Clase abstracta   
     def calcular_area(self):
         pass
 
