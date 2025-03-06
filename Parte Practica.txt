@@ -56,8 +56,8 @@ class biblioteca:
 mi_biblioteca = biblioteca()
 
 #Añadir libros
-mi_biblioteca.agregar_libro(Libro("Cien años de soledad", "Gabriel García Márquez"))
-mi_biblioteca.agregar_libro(Libro("1984", "George Orwell"))
+mi_biblioteca.agregar_libro(libro("Cien años de soledad", "Gabriel García Márquez"))
+mi_biblioteca.agregar_libro(libro("1984", "George Orwell"))
 
 #Crear usuario
 usuario1 = usuario("Ana López")
