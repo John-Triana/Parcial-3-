@@ -1,0 +1,73 @@
+#CLASES
+class libro:
+    def __init__(self, titulo, autor):
+        self.titulo = titulo
+        self.autor = autor
+        self.disponible = True  # Por defecto, el libro está disponible
+
+    def prestar(self):
+        if self.disponible:
+            self.disponible = False
+            return f"El libro '{self.titulo}' ha sido prestado."
+        else:
+            return "El libro no está disponible."
+
+    def devolver(self):
+        if not self.disponible:
+            self.disponible = True
+            return f"El libro '{self.titulo}' ha sido devuelto."
+        else:
+            return "El libro ya está disponible."
+            
+class usuario:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.libros_prestados = []
+
+    def tomar_prestado(self, libro):
+        if libro.disponible:
+            self.libros_prestados.append(libro)
+            return libro.prestar()
+        else:
+            return "El libro no está disponible."
+
+    def devolver_libro(self, libro):
+        if libro in self.libros_prestados:
+            self.libros_prestados.remove(libro)
+            return libro.devolver()
+        else:
+            return "Este libro no fue prestado por este usuario."
+
+class biblioteca:
+    def __init__(self):
+        self.libros = []
+
+    def agregar_libro(self, libro):
+        self.libros.append(libro)
+
+    def buscar_libro(self, titulo):
+        for libro in self.libros:
+            if libro.titulo == titulo:
+                return libro
+        return None
+
+#EJEMPLO DE USO
+#Crear biblioteca
+mi_biblioteca = biblioteca()
+
+#Añadir libros
+mi_biblioteca.agregar_libro(Libro("Cien años de soledad", "Gabriel García Márquez"))
+mi_biblioteca.agregar_libro(Libro("1984", "George Orwell"))
+
+#Crear usuario
+usuario1 = usuario("Ana López")
+
+#Buscar y prestar libro
+libro = mi_biblioteca.buscar_libro("1984")
+if libro:
+    print(usuario1.tomar_prestado(libro))
+else:
+    print("Libro no encontrado")
+
+#Devolver libro
+print(usuario1.devolver_libro(libro))

@@ -1,0 +1,77 @@
+class cuentabancaria:       #ENCAPSULAMIENTO
+    def __init__(self, titular, saldo):
+        self.__titular = titular  # Atributo privado
+        self.__saldo = saldo      # Atributo privado
+
+    def depositar(self, monto):
+        if monto > 0:
+            self.__saldo += monto
+            return f"Depósito exitoso. Nuevo saldo: {self.__saldo}"
+        else:
+            return "Monto inválido."
+
+    def obtener_saldo(self):  # Método público para acceder al saldo
+        return self.__saldo
+
+#Uso
+cuenta = cuentabancaria("Ana López", 1000)
+print(cuenta.depositar(500))  # Depósito exitoso. Nuevo saldo: 1500
+print(cuenta.obtener_saldo()) # 1500
+#print(cuenta.__saldo) 
+###
+
+class vehiculo:             #HERENCIA
+    def __init__(self, marca):  
+        self.marca = marca 
+
+class automovil(vehiculo):         #HERENCIA
+    def __init__(self, marca, modelo):  
+        super().__init__(marca)  
+        self.modelo = modelo  
+        class vehiculo:  
+    def __init__(self, marca):  
+        self.marca = marca  
+###
+
+class animal:       #POLIMORFISMO
+    def hacer_sonido(self):
+        pass  # Método abstracto
+
+class perro(Animal):
+    def hacer_sonido(self):
+        return "Guau!"
+
+class gato(Animal):
+    def hacer_sonido(self):
+        return "Miau!"
+
+#Uso
+animales = [perro(), gato()]
+for animal in animales:
+    print(animal.hacer_sonido())
+###
+
+from abc import ABC, abstractmethod     #ABSTRACCIÓN 
+
+class figura(ABC):  # Clase abstracta    @abstractmethod
+    def calcular_area(self):
+        pass
+
+class circulo(figura):
+    def __init__(self, radio):
+        self.radio = radio
+
+    def calcular_area(self):
+        return 3.1416 * self.radio ** 2
+
+class cuadrado(figura):
+    def __init__(self, lado):
+        self.lado = lado
+
+    def calcular_area(self):
+        return self.lado ** 2
+
+#Uso
+figuras = [circulo(5), cuadrado(4)]
+for figura in figuras:
+    print(f"Área: {figura.calcular_area()}")
